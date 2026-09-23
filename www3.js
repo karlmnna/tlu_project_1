@@ -40,10 +40,10 @@ http.createServer(async function(req, res){
 		//liidame virtuaalse serveri päris failikataloogidega
 		let bannerPath = path.join(__dirname, 'pic', currentURL.pathname);
 		try {
-			const data = await fs.readFile(bannerPath)
-			res.write(200, {"Content-type": "image/png"});
-			res.end(data);
-		} catch(err) {
+			const data = await fs.readFile(bannerPath);
+			res.writeHead(200, {"Content-type": "image/png"});
+			return res.end(data);
+		} catch (err) {
 			res.writeHead(404, {"Content-type": "text/plain; charset=utf8"});
 			return res.end('Pilti ei leitud!');
 		}
